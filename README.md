@@ -39,6 +39,9 @@ pyinstaller main.py   (update functionality)
 >>>>>>> eb2f9a4 (Update README.md)
 
 
+
+Python 3.12.0 https://www.python.org/downloads/
+
 Command terminal prompts
 
 pip install pylance (Pylance import)
