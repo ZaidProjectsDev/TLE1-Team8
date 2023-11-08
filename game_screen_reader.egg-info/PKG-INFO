@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: game-screen-reader
+Version: 1.0
+Requires-Dist: pytesseract
+Requires-Dist: pyautogui
+Requires-Dist: pyttsx3
