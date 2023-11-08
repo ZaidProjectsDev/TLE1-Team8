@@ -5,6 +5,8 @@ Team 8: Hoofdopdracht 3, Opdrachtgever MEE
 
 Python 3.12.0 https://www.python.org/downloads/
 
+voorkomend error bij begin (pip install --user pip install)
+
 Command terminal prompts
 
 pip install pylance (Pylance import)
