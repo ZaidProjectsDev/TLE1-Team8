@@ -1,6 +1,7 @@
 # TLE1-Team8
 Team 8: Hoofdopdracht 3, Opdrachtgever MEE
 
+<<<<<<< HEAD
 # Modus Operandi 
 Use ML to make it possible for visually impared gamers to visualize their surroundings by using 
 ML Image recognition and Text-To-Speech narration. 
@@ -17,3 +18,17 @@ Please run pip install -r requirements.txt --upgrade to install all dependencies
 # Running the program
 For now run the windowcapture by using : python window_Capture/main.py
 
+=======
+
+Command terminal prompts
+
+pip install pylance (Pylance import)
+
+pip install pyttsx3   (TTS import)
+
+pip install PyAutoGUI (UI Import)
+
+pyinstaller main.spec   (update visually)
+
+pyinstaller main.py   (update functionality)
+>>>>>>> eb2f9a4 (Update README.md)
