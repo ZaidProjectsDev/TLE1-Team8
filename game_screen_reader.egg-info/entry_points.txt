@@ -1,0 +1,2 @@
+[console_scripts]
+game_screen_reader = game_screen_reader.main:main_function
