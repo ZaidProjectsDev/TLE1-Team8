@@ -20,6 +20,9 @@ For now run the windowcapture by using : python window_Capture/main.py
 
 =======
 
+
+Python 3.12.0 https://www.python.org/downloads/
+
 Command terminal prompts
 
 pip install pylance (Pylance import)
