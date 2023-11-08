@@ -37,3 +37,16 @@ pyinstaller main.spec   (update visually)
 
 pyinstaller main.py   (update functionality)
 >>>>>>> eb2f9a4 (Update README.md)
+
+
+Command terminal prompts
+
+pip install pylance (Pylance import)
+
+pip install pyttsx3   (TTS import)
+
+pip install PyAutoGUI (UI Import)
+
+pyinstaller main.spec   (update visually)
+
+pyinstaller main.py   (update functionality)
