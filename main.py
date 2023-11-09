@@ -1,14 +1,10 @@
 import tkinter as tk
-from screen_reader import toggle_screen_reader
+from screen_reader import toggle_screen_reader, read_game_area
 
 root = tk.Tk()
 root.title("Screen Reader App")
 
-# Styling
-root.geometry("400x300")  # Set the window size
-root.configure(bg="white")  # Set the background color
-
-canvas1 = tk.Canvas(root, width=400, height=300, bg="white")  # Set canvas background color
+canvas1 = tk.Canvas(root, width=500, height=500)
 canvas1.pack()
 
 button1 = tk.Button(
@@ -21,5 +17,8 @@ button1 = tk.Button(
     pady=10,
 )
 canvas1.create_window(200, 150, window=button1)
+
+# Start the screen reader function
+root.after(1000, read_game_area)
 
 root.mainloop()
