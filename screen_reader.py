@@ -24,19 +24,32 @@ def toggle_screen_reader(button, canvas, main_root):
     button1 = button
     canvas1 = canvas
     root = main_root
+
+    def on_hover(event):
+        if screen_reader_enabled:
+            engine.say("Disable Screen Reader")
+        else:
+            engine.say("Enable Screen Reader")
+        engine.runAndWait()
+
+    def on_leave(event):
+        engine.stop()  # Stop the ongoing speech
+
     screen_reader_enabled = not screen_reader_enabled
     if screen_reader_enabled:
         button1.config(text="Disable Screen Reader", bg="red")
-        # Enable message in a separate thread
         threading.Thread(target=enable_message).start()
     else:
         button1.config(text="Enable Screen Reader", bg="green")
-        # Disable message in a separate thread
         threading.Thread(target=disable_message).start()
+
+    # Bind events to functions
+    button1.bind("<Enter>", on_hover)
+    button1.bind("<Leave>", on_leave)
 
 def enable_message():
     # Enable message
-    engine.say("Screen reader enabled. Click on objects to hear descriptions.")
+    engine.say("Screen reader enabled. Have Fun!")
     engine.runAndWait()
 
 def disable_message():
@@ -69,3 +82,7 @@ def describe_text(text):
     # Use text-to-speech to describe the extracted text
     engine.say(text)
     engine.runAndWait()
+
+# Trigger the initial announcement when the program starts
+engine.say("Program has started")
+engine.runAndWait()
