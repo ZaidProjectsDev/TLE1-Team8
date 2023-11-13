@@ -7,7 +7,8 @@ import torch
 from matplotlib import pyplot as plt
 import sentencebuilder
 
-model = torch.hub.load('yolov5', 'yolov5s', source='local')
+model = torch.hub.load('yolov5', 'yolov5x', source='local')
+
 game_window_to_watch = 'The Evil Within 2' #Replace this with the game window you want to watch
 #from vision import findClickPositions
 #change the working dir the script is in 
@@ -24,7 +25,21 @@ def results_parser(results):
       n = (results.pred[0][:, -1] == c).sum()  # detections per class
       s += f"{n} {results.names[int(c)]}{'s' * (n > 1)}, "  # add to string
   return s
-
+def try_to_capture_game_window(retries=5,game_window=None): 
+    current_retry_count =0
+    result = None
+    while(result == None):
+      try_result = scan_game_window(game_window)
+      if(try_result != "Couldn't come up with a narration" ): #error message 
+         result = try_result
+      else:
+         if(current_retry_count<retries):
+            current_retry_count+=1
+         else:
+            result = try_result
+    
+    return result
+         
 def scan_game_window(game_window):
     wincap = WindowCapture(game_window)
     fps = time()
@@ -37,11 +52,11 @@ def scan_game_window(game_window):
  
     results = model(img)
     detections.append(results)
-    #cv.imshow(game_window + ' scan', np.squeeze(results.render()))
+    cv.imshow(game_window + ' scan', np.squeeze(results.render()))
     #cv.imshow(game_window + ' scan', np.squeeze(results.render()))
 
     results.print()
     print('FPS {}'.format( 1/(time()-fps)))
     fps = time()
-    sentencebuilder.sentencebuilder(results_parser(results))
-    return results_parser(results)
+
+    return sentencebuilder.sentencebuilder(results_parser(results))
