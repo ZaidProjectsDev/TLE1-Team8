@@ -24,7 +24,7 @@ def results_parser(results):
 
 def scan_game_window(game_window):
     fps = time()
-    wincap = WindowCapture(game_window_to_watch)
+    wincap = WindowCapture(game_window)
     screenshot = wincap.get_screenshot()
     #Use this function if the game window is black (Slower at the moment. New hwnd search every frame. Need to optimize)
     #screenshot = wincap.capture_win_alt(game_window)
