@@ -1,5 +1,6 @@
 import keyboard
 import pygame
+from gamecapture import scan_game_window
 
 def play_sound(file_path):
     pygame.init()
@@ -16,12 +17,12 @@ def play_sound(file_path):
 
 
 def scanner():
-    print("You pressed 'q'.")
     play_sound('TLE1-Team8\ding-36029.wav')
-    keyboardOn()
+    print(scan_game_window('Netflix - Google Chrome'))
+    keyboardInput()
 
-def keyboardOn():
+def keyboardInput():
     keyboard.wait("q")
     scanner()
 
-keyboardOn()
+keyboardInput()
