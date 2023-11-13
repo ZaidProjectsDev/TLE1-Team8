@@ -9,6 +9,12 @@ Pytesseract / tesseract = https://github.com/UB-Mannheim/tesseract/wiki
 
 Command terminal prompts
 
+
+
+pip install opencv-python (opencv import)
+
+pip install pytesseract (Pytesseract import)
+
 pip install pylance (Pylance import)
 
 pip install pyttsx3   (TTS import)
