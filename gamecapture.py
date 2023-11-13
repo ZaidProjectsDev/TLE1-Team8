@@ -11,7 +11,7 @@ game_window_to_watch = 'The Evil Within 2' #Replace this with the game window yo
 #change the working dir the script is in 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 needle_img_path_real = 'img-test/ref/tew2/goal/gui_2.jpg'
-wincap = WindowCapture(game_window_to_watch)
+
 
 #function copied from mak13 @ StackOverflow (https://stackoverflow.com/questions/71905867/how-to-turn-detections-object-into-string)
 def results_parser(results):
@@ -24,6 +24,7 @@ def results_parser(results):
 
 def scan_game_window(game_window):
     fps = time()
+    wincap = WindowCapture(game_window_to_watch)
     screenshot = wincap.get_screenshot()
     #Use this function if the game window is black (Slower at the moment. New hwnd search every frame. Need to optimize)
     #screenshot = wincap.capture_win_alt(game_window)
