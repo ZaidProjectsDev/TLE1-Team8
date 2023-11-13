@@ -5,6 +5,8 @@ import os
 from windowcapture import WindowCapture
 import torch
 from matplotlib import pyplot as plt
+import sentencebuilder
+
 model = torch.hub.load('yolov5', 'yolov5s', source='local')
 game_window_to_watch = 'The Evil Within 2' #Replace this with the game window you want to watch
 #from vision import findClickPositions
@@ -46,6 +48,7 @@ while(True):
     #print(results_parser(results))
     results.print()
     print('FPS {}'.format( 1/(time()-loop_time)))
+    sentencebuilder.sentencebuilder(results_parser(results))
     loop_time = time()
     #press q with the output window focussed to exit
     #wait 1ms every loop to process key presses
