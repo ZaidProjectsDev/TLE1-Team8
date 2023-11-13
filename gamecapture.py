@@ -34,7 +34,7 @@ def scan_game_window(game_window):
  
     results = model(img)
     detections.append(results)
-    cv.imshow(game_window + ' scan', np.squeeze(results.render()))
+    #cv.imshow(game_window + ' scan', np.squeeze(results.render()))
 
     results.print()
     print('FPS {}'.format( 1/(time()-fps)))
