@@ -17,7 +17,8 @@ def play_sound(file_path):
 
 
 def scanner():
-    play_sound('TLE1-Team8\ding-36029.wav')
+    print("you pressed 'q' .")
+    play_sound('ding-36029.wav')
     print(scan_game_window('Netflix - Google Chrome'))
     keyboardInput()
 

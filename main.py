@@ -9,7 +9,7 @@ needle_img_path_real = 'img-test/ref/tew2/goal/gui_2.png'
 
 while (True):
     keyboardInput
-    if(cv.waitKey(1)==ord('q')):
+    if(cv.waitKey(1)==ord('p')):
         cv.destroyAllWindows()
         break
 
