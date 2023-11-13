@@ -5,13 +5,15 @@ import os
 from windowcapture import WindowCapture
 import torch
 from matplotlib import pyplot as plt
+import sentencebuilder
+
 model = torch.hub.load('yolov5', 'yolov5s', source='local')
 game_window_to_watch = 'The Evil Within 2' #Replace this with the game window you want to watch
 #from vision import findClickPositions
 #change the working dir the script is in 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 needle_img_path_real = 'img-test/ref/tew2/goal/gui_2.jpg'
-wincap = WindowCapture(game_window_to_watch)
+
 
 #function copied from mak13 @ StackOverflow (https://stackoverflow.com/questions/71905867/how-to-turn-detections-object-into-string)
 def results_parser(results):
@@ -23,10 +25,11 @@ def results_parser(results):
   return s
 
 def scan_game_window(game_window):
+    wincap = WindowCapture(game_window)
     fps = time()
-    screenshot = wincap.get_screenshot()
+    #screenshot = wincap.get_screenshot()
     #Use this function if the game window is black (Slower at the moment. New hwnd search every frame. Need to optimize)
-    #screenshot = wincap.capture_win_alt(game_window)
+    screenshot = wincap.capture_win_alt(game_window)
 
     img = screenshot
     detections = []
@@ -38,5 +41,5 @@ def scan_game_window(game_window):
     results.print()
     print('FPS {}'.format( 1/(time()-fps)))
     fps = time()
+    sentencebuilder.sentencebuilder(results_parser(results))
     return results_parser(results)
-

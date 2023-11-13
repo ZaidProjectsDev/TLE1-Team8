@@ -8,7 +8,7 @@ needle_img_path_real = 'img-test/ref/tew2/goal/gui_2.png'
 
 while (True):
     
-    print(scan_game_window('The Evil Within 2'))
+    print(scan_game_window('GitHub Desktop'))
     if(cv.waitKey(1)==ord('q')):
         cv.destroyAllWindows()
         break
