@@ -22,38 +22,21 @@ def results_parser(results):
       s += f"{n} {results.names[int(c)]}{'s' * (n > 1)}, "  # add to string
   return s
 
-loop_time = time()
-while(True):
-
+def scan_game_window(game_window):
+    fps = time()
     screenshot = wincap.get_screenshot()
     #Use this function if the game window is black (Slower at the moment. New hwnd search every frame. Need to optimize)
-    #screenshot = wincap.capture_win_alt(game_window_to_watch)
+    #screenshot = wincap.capture_win_alt(game_window)
 
     img = screenshot
     detections = []
  
-   # %matplotlib inline 
-
-    corrected_colors= cv.cvtColor(img, cv.COLOR_RGB2BGR)
     results = model(img)
     detections.append(results)
-    cv.imshow('YOLO', np.squeeze(results.render()))
-    #img = cv.imread(needle_img_path_real)
-    #print(img)
-    #screenshot =  cv.cvtColor(screenshot, cv.COLOR_BGR2GRAY)
-    #cv.imshow('Computer Vision', screenshot)
-    #findClickPositions(needle_img_path_real, screenshot, 0.5, 'rectangles')
-    #print(results_parser(results))
+    cv.imshow(game_window + ' scan', np.squeeze(results.render()))
+
     results.print()
-    print('FPS {}'.format( 1/(time()-loop_time)))
-    loop_time = time()
-    #press q with the output window focussed to exit
-    #wait 1ms every loop to process key presses
-    if(cv.waitKey(1)==ord('q')):
-        cv.destroyAllWindows()
+    print('FPS {}'.format( 1/(time()-fps)))
+    fps = time()
+    return results_parser(results)
 
-
-        break
-
-
-print('Done.')
