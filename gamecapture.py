@@ -15,6 +15,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 needle_img_path_real = 'img-test/ref/tew2/goal/gui_2.jpg'
 
 
+
 #function copied from mak13 @ StackOverflow (https://stackoverflow.com/questions/71905867/how-to-turn-detections-object-into-string)
 def results_parser(results):
   s = ""
@@ -36,6 +37,7 @@ def scan_game_window(game_window):
  
     results = model(img)
     detections.append(results)
+    #cv.imshow(game_window + ' scan', np.squeeze(results.render()))
     #cv.imshow(game_window + ' scan', np.squeeze(results.render()))
 
     results.print()

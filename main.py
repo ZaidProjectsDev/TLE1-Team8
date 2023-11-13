@@ -6,7 +6,7 @@ from inputchecker import keyboardInput
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 canvas_img_path_real = 'img-test/ref/tew2/tew2_ref_2.png'
 needle_img_path_real = 'img-test/ref/tew2/goal/gui_2.png'
-game_window_name = 'The Evil Within 2'
+game_window_name = 'The Evil Within 2' #Replace this with what is relevant to your use case.
 while (True):
     keyboardInput(game_window_name)
     if(cv.waitKey(1)==ord('p')):
