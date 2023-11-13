@@ -16,14 +16,12 @@ def play_sound(file_path):
         pygame.mixer.quit()
 
 
-def scanner():
+def scanner(game_window):
     print("you pressed 'q' .")
     play_sound('ding-36029.wav')
-    print(scan_game_window('Netflix - Google Chrome'))
-    keyboardInput()
+    print(scan_game_window(game_window))
 
-def keyboardInput():
+def keyboardInput(game_window):
     keyboard.wait("q")
-    scanner()
+    scanner(game_window)
 
-keyboardInput()
