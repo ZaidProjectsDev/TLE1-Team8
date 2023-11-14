@@ -2,6 +2,7 @@ import keyboard
 import pygame
 import pyttsx3
 import gamecapture
+root = None
 
 def play_sound(file_path):
     pygame.init()
@@ -26,7 +27,9 @@ def scanner(game_window):
     engine.runAndWait()
     print(result)
 
+
 def keyboardInput(game_window):
-    keyboard.wait("q")
-    scanner(game_window)
+    if keyboard.is_pressed('q'):
+        scanner(game_window)
+
 
