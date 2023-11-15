@@ -1,2 +1,5 @@
 /yolov5/
 yolov5x.pt
+/venv/
+.idea
+/__pycache__/

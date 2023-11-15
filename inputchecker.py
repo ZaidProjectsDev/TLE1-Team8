@@ -2,7 +2,10 @@ import keyboard
 import pygame
 import pyttsx3
 import gamecapture
+
 root = None
+models = None
+
 
 def play_sound(file_path):
     pygame.init()
@@ -18,18 +21,16 @@ def play_sound(file_path):
         pygame.mixer.quit()
 
 
-def scanner(game_window):
+def scanner(game_window, shared_models):
     print("you pressed 'q' .")
     play_sound('ding-36029.wav')
-    result = gamecapture.try_to_capture_game_window(20,game_window)
+    result = gamecapture.try_to_capture_game_window(20, game_window, shared_models.genericModel)
     engine = pyttsx3.init()
     engine.say(result)
     engine.runAndWait()
     print(result)
 
 
-def keyboardInput(game_window):
+def keyboardInput(game_window, shared_models):
     if keyboard.is_pressed('q'):
-        scanner(game_window)
-
-
+        scanner(game_window, shared_models)
