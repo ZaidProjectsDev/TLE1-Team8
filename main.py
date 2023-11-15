@@ -34,4 +34,36 @@ button1 = tk.Button(
     padx=20,
     pady=10,
 )
+
+<<<<<<< main
+def keyboard_update():
+    keyboardInput(game_window_name)
+    root.after(10,keyboard_update)
+
+canvas1.create_window(200, 150, window=button1)
+
+# while (True):
+#     keyboardInput(game_window_name)
+#     if(cv.waitKey(1)==ord('p')):
+#         cv.destroyAllWindows()
+#         break
+keyboard_update()
+
+# Bind events for hover in main.py
+def on_hover(event):
+    engine.say("Enable Screen Reader")
+    engine.runAndWait()
+
+def on_leave(event):
+    engine.stop()  # Stop the ongoing speech
+
+# Bind events to functions
+button1.bind("<Enter>", on_hover)
+button1.bind("<Leave>", on_leave)
+
+canvas1.create_window(200, 150, window=button1)
+
+# Start the screen reader function
+root.after(1000, read_game_area)
+
 root.mainloop()
