@@ -8,6 +8,7 @@ setup(
         "pytesseract",
         "pyautogui",
         "pyttsx3",
+        "opencv-python",
         # Add any other dependencies here
     ],
     entry_points={

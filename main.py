@@ -13,16 +13,16 @@ game_window_name = 'Ratchet & Clank: Rift Apart v1.922.0.0' #Replace this with w
 #print(points)
 
 import tkinter as tk
-from screen_reader import toggle_screen_reader
+import pyttsx3
+from screen_reader import toggle_screen_reader, read_game_area
 
 root = tk.Tk()
 root.title("Screen Reader App")
 
-# Styling
-root.geometry("400x300")  # Set the window size
-root.configure(bg="white")  # Set the background color
+# Initialize the text-to-speech engine
+engine = pyttsx3.init()
 
-canvas1 = tk.Canvas(root, width=400, height=300, bg="white")  # Set canvas background color
+canvas1 = tk.Canvas(root, width=500, height=500)
 canvas1.pack()
 
 button1 = tk.Button(
@@ -34,16 +34,4 @@ button1 = tk.Button(
     padx=20,
     pady=10,
 )
-def keyboard_update():
-    keyboardInput(game_window_name)
-    root.after(10,keyboard_update)
-
-canvas1.create_window(200, 150, window=button1)
-
-# while (True):
-#     keyboardInput(game_window_name)
-#     if(cv.waitKey(1)==ord('p')):
-#         cv.destroyAllWindows()
-#         break
-keyboard_update()
 root.mainloop()
