@@ -15,18 +15,21 @@ root.title("Screen Reader App")
 root.geometry("640x480")  # Set the window size
 root.configure(bg="white")  # Set the background color
 
-canvas1 = tk.Canvas(root, width=400, height=300, bg="white")  # Set canvas background color
-canvas1.pack()
-label_active_game = tk.Label(text=lang.get_translation('bark_current_game_window'))
+label_active_game = tk.Label(text=lang.get_translation('bark_current_game_window'),
+                             font=("Arial", 14),
+                             padx=20,
+                             pady=10,
+                             )
 label_active_game.pack()
 btn_screen_reader_window = tk.Button(
     text=lang.get_translation('enable_screen_reader_window'),
     bg="green",
     fg="white",
-    command=lambda: shared_models.initalizeVision() ,
+    command=lambda: shared_models.initalizeVision(),
     font=("Arial", 14),
     padx=20,
     pady=10,
+    state=tk.DISABLED,
 )
 btn_screen_reader_window.pack()
 btn_find_game_window = tk.Button(
@@ -42,13 +45,14 @@ btn_find_game_window.pack()
 
 
 def update_active_game_window():
-    if shared_models.activeUIWindow is None:
-        if windowdefinition.activeWindow is not None:
-            shared_models.activeUIWindow = windowdefinition.activeWindow
+    if windowdefinition.activeWindow == '':
         label_active_game.configure(text=lang.get_translation('bark_no_game_window'))
+        btn_screen_reader_window.configure(state=tk.DISABLED)
     else:
         label_active_game.configure(
             text=lang.get_translation('bark_current_game_window') + windowdefinition.activeWindow.title)
+        btn_screen_reader_window.configure(state=tk.NORMAL)
+        shared_models.activeUIWindow = windowdefinition.activeWindow
     root.after(100, update_active_game_window)
 
 

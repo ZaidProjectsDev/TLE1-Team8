@@ -2,6 +2,10 @@
 import numpy as np
 import win32gui, win32ui, win32con
 from ctypes import windll
+
+import windowdefinition
+
+
 class WindowCapture:
     w=0
     h=0
@@ -81,32 +85,36 @@ class WindowCapture:
             left, top, right, bottom = win32gui.GetClientRect(self.hwnd)
             w = right - left
             h = bottom - top
+            if w >= 320 and h >= 240:
+                hwnd_dc = win32gui.GetWindowDC(self.hwnd)
+                mfc_dc = win32ui.CreateDCFromHandle(hwnd_dc)
+                save_dc = mfc_dc.CreateCompatibleDC()
+                bitmap = win32ui.CreateBitmap()
+                bitmap.CreateCompatibleBitmap(mfc_dc, w, h)
+                save_dc.SelectObject(bitmap)
 
-            hwnd_dc = win32gui.GetWindowDC(self.hwnd)
-            mfc_dc = win32ui.CreateDCFromHandle(hwnd_dc)
-            save_dc = mfc_dc.CreateCompatibleDC()
-            bitmap = win32ui.CreateBitmap()
-            bitmap.CreateCompatibleBitmap(mfc_dc, w, h)
-            save_dc.SelectObject(bitmap)
+                # If Special K is running, this number is 3. If not, 1
+                result = windll.user32.PrintWindow(self.hwnd, save_dc.GetSafeHdc(), 3)
 
-            # If Special K is running, this number is 3. If not, 1
-            result = windll.user32.PrintWindow(self.hwnd, save_dc.GetSafeHdc(), 3)
+                bmpinfo = bitmap.GetInfo()
+                bmpstr = bitmap.GetBitmapBits(True)
 
-            bmpinfo = bitmap.GetInfo()
-            bmpstr = bitmap.GetBitmapBits(True)
+                img = np.frombuffer(bmpstr, dtype=np.uint8).reshape((bmpinfo["bmHeight"], bmpinfo["bmWidth"], 4))
+                img = np.ascontiguousarray(img)[..., :-1]  # make image C_CONTIGUOUS and drop alpha channel
 
-            img = np.frombuffer(bmpstr, dtype=np.uint8).reshape((bmpinfo["bmHeight"], bmpinfo["bmWidth"], 4))
-            img = np.ascontiguousarray(img)[..., :-1]  # make image C_CONTIGUOUS and drop alpha channel
+                if not result:  # result should be 1
+                    win32gui.DeleteObject(bitmap.GetHandle())
+                    save_dc.DeleteDC()
+                    mfc_dc.DeleteDC()
+                    win32gui.ReleaseDC(self.hwnd, hwnd_dc)
+                    raise RuntimeError(f"Unable to acquire screenshot! Result: {result}")
 
-            if not result:  # result should be 1
-                win32gui.DeleteObject(bitmap.GetHandle())
-                save_dc.DeleteDC()
-                mfc_dc.DeleteDC()
-                win32gui.ReleaseDC(self.hwnd, hwnd_dc)
-                raise RuntimeError(f"Unable to acquire screenshot! Result: {result}")
-
-            return img
+                return img
+            else:
+                return None
         else:
+            windowdefinition.activeWindow = None
+            print('Game Window was invalid Reason : Size too small')
             return None
 def get_screen_position(self, pos):
     return (pos[0] + self.offset_x, pos[1] + self.offset_y)

@@ -9,13 +9,24 @@ import gui_windowcontroller
 import variables as current_vars
 shared_models = current_vars.SharedModels()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
+import localization
+lang = localization.Localization()
 import tkinter as tk
 from screen_reader import toggle_screen_reader
 
 root = tk.Tk()
 
-
+#buttons
+btn_language = tk.Button(
+    text= lang.get_translation('language_toggle_button'),
+    command=lambda: lang.set_language(lang.language),
+    bg="green",
+    fg="white",
+    font=("Arial", 14),
+    padx=20,
+    pady=10,
+)
+btn_language.pack()
 
 # # Styling
 # root.geometry("400x300")  # Set the window size

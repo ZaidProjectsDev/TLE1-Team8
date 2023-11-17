@@ -47,7 +47,10 @@ def scan_game_window(game_window, model):
 
     results = model(img)
     detections.append(results)
+    cv.namedWindow(game_window + ' scan', cv.WINDOW_KEEPRATIO)
     cv.imshow(game_window + ' scan', np.squeeze(results.render()))
+    cv.resizeWindow(game_window + ' scan', 960,540)
+
     # cv.imshow(game_window + ' scan', np.squeeze(results.render()))
 
     results.print()
