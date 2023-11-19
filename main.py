@@ -1,6 +1,8 @@
 import cv2 as cv
 import numpy as np
 import os 
+import speech_recognition as sr
+import pyaudio
 from gamecapture import scan_game_window
 from inputchecker import keyboardInput
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
