@@ -6,3 +6,4 @@ yolov5x.pt
 .pyo
 .pycache
 .pyc
+*.pyc

@@ -4,7 +4,7 @@ import tkinter as tk
 import windowdefinition
 def is_game(title):
     # Add conditions to identify games based on the window title
-    game_keywords = ['game', 'play', 'gaming', 'steam', 'epic', 'assasins', 'clank', 'evil', 'gta', 'grand', 'halo', ': source','mario', 'sonic','netflix', 'YouTube']
+    game_keywords = ['game', 'play', 'gaming', 'steam', 'epic', 'assasins', 'clank', 'evil', 'gta', 'grand', 'halo', ': source','mario', 'sonic','netflix', 'YouTube', 'Raider', 'dx11' , 'dx12', 'dx9',' dx10', 'vk', 'vulkan', 'gl', 'shipping', 'build', 'debug']
     return any(keyword in title.lower() for keyword in game_keywords)
 
 def get_all_windows():

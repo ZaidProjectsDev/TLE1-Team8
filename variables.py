@@ -1,12 +1,9 @@
-import pyttsx3
-import tkinter
-import cv2 as cv
-import numpy as np
 import os
-import gamecapture
-import inputchecker
 import torch
-import windowdefinition
+import os
+
+import torch
+
 # The point of system.py is to facilitate shared variables for consistent usage
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 

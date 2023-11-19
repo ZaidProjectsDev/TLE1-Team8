@@ -6,6 +6,9 @@ class Localization:
         self.default_language = "english"
         self.localization_table = {
             "confirm_button_01": {"english": "Confirm", "dutch": "Bevestigen"},
+            "tts_scanning": {"english": "Scanning Game.", "dutch": "Scanning Spel"},
+            "tts_app_started": {"english": "Application Started", "dutch": "Applicatie Geinitaliseerd"},
+            "tts_no_window_found": {"english": "Error, there is no game window selected.", "dutch": "Error, er is geen spel venster geslecteerd"},
             "enable_screen_reader_window": {"english": "Enable Screen Reader X", "dutch": "Bevestigen"},
             "disable_screen_reader_window": {"english": "Disable Screen Reader", "dutch": "Bevestigen"},
             "find_game_windows": {"english": "Find Game Open Windows", "dutch": "Bevestigen"},
@@ -13,6 +16,7 @@ class Localization:
             "bark_no_game_window": {"english": "There is no game selected: ", "dutch": "Er is geen geselecteerde speel:"},
             "language_toggle_button": {"english": "Language : English: ",
                                     "dutch": "Taal : Nederlands:"},
+
             # Add more entries for other keys as needed
         }
 

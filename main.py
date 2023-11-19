@@ -1,24 +1,28 @@
 import cv2 as cv
 import numpy as np
 import os
-
+import speaker
 import windowdefinition
 from gamecapture import scan_game_window
 from inputchecker import keyboardInput
 import gui_windowcontroller
 import variables as current_vars
+
 shared_models = current_vars.SharedModels()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 import localization
+
 lang = localization.Localization()
 import tkinter as tk
 from screen_reader import toggle_screen_reader
+error_reporter = speaker.SpeakerObject()
+message_reporter = speaker.SpeakerObject()
 
 root = tk.Tk()
 
-#buttons
+# buttons
 btn_language = tk.Button(
-    text= lang.get_translation('language_toggle_button'),
+    text=lang.get_translation('language_toggle_button'),
     command=lambda: lang.set_language(lang.language),
     bg="green",
     fg="white",
@@ -27,6 +31,7 @@ btn_language = tk.Button(
     pady=10,
 )
 btn_language.pack()
+message_reporter.say(lang.get_translation('tts_app_started'))
 
 # # Styling
 # root.geometry("400x300")  # Set the window size
@@ -64,9 +69,12 @@ def update_program():
 
 
 def keyboard_update():
-    if windowdefinition.activeWindow is not None and windowdefinition.activeWindow.title is not '':
-        keyboardInput(windowdefinition.activeWindow.title, shared_models)
+    # if windowdefinition.activeWindow is not None and windowdefinition.activeWindow.title is not '':
+    keyboardInput(windowdefinition.activeWindow.title, shared_models)
+
     root.after(10, keyboard_update)
+
+
 
 
 update_program()
