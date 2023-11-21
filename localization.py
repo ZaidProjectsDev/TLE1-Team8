@@ -14,6 +14,7 @@ class Localization:
             "find_game_windows": {"english": "Find Game Open Windows", "dutch": "Bevestigen"},
             "bark_current_game_window": {"english": "Current Active Game is : ", "dutch": "De actieve spel is :"},
             "bark_no_game_window": {"english": "There is no game selected: ", "dutch": "Er is geen geselecteerde speel:"},
+            "tts_not_initialized": {"english": "Scanner not initialized: ", "dutch": "Het scanner is niet opgestart:"},
             "language_toggle_button": {"english": "Language : English: ",
                                     "dutch": "Taal : Nederlands:"},
 

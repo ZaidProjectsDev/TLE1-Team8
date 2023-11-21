@@ -1,14 +1,17 @@
 import cv2 as cv
 import numpy as np
 import os
+
+import gamecapture
 import speaker
 import windowdefinition
 from gamecapture import scan_game_window
 from inputchecker import keyboardInput
 import gui_windowcontroller
-import variables as current_vars
+import shared_model as current_vars
 
 shared_models = current_vars.SharedModels()
+current_vars.setCurrentSharedModel(shared_models)
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 import localization
 
@@ -64,6 +67,7 @@ message_reporter.say(lang.get_translation('tts_app_started'))
 def update_program():
     keyboard_update()
     gui_windowcontroller.shared_models = shared_models
+    gamecapture.shared_models = shared_models
     gui_windowcontroller.update()
     root.after(5, update_program)
 

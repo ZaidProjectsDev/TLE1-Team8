@@ -2,12 +2,14 @@ from time import time
 import cv2 as cv
 import numpy as np
 import os
+
+import shared_model
 from windowcapture import WindowCapture
 import torch
 from matplotlib import pyplot as plt
 import sentencebuilder
-import variables
-
+shared_models = shared_model.SharedModels()
+import speaker
 
 # function copied from mak13 @ StackOverflow (https://stackoverflow.com/questions/71905867/how-to-turn-detections-object-into-string)
 def results_parser(results):

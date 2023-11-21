@@ -22,6 +22,7 @@ def on_button_click(hwnd,root):
     # Do something with the selected window (hwnd)
     print(f"Selected window: {hwnd}")
     newWindow = windowdefinition.WindowDefinition(hwnd,win32gui.GetWindowText(hwnd))
+    print(newWindow.pid, newWindow.title)
     windowdefinition.activeWindow = newWindow
     root.destroy()
 

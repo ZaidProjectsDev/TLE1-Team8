@@ -33,7 +33,10 @@ def scanner(game_window, shared_models):
 def keyboardInput(game_window, shared_models):
     if keyboard.is_pressed('q'):
         if game_window != '':
-            scanner(game_window, shared_models)
+            if shared_models.genericModel is None:
+                state_reporter.say(lang.get_translation('tts_not_initialized'))
+            else:
+                scanner(game_window, shared_models)
         else:
             state_reporter.say(lang.get_translation('tts_no_window_found'))
 
