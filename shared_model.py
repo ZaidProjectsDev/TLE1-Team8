@@ -15,19 +15,21 @@ class SharedModels():
     gameElementModel = None
     gameElementModelConf = 1
     activeUIWindow = None
-
+    initialized = False
     def initalizeImageDetectionModel(self,modelVersion='yolov5x', confidenceVariable=genericModelConf,
                                      desiredMinimumConfidence=0.7):
         narrator.speak('Progress : 25%',True)
         model = torch.hub.load('yolov5', modelVersion, source='local')
         narrator.speak('Progress : 50%',True)
+        self.initialized = True
         return model
 
     def initalizeVision(self):
-        narrator.speak('Starting Image Detection Software')
-        self.genericModel = self.initalizeImageDetectionModel('yolov5x', self.genericModelConf, 0.7)
-        narrator.speak('Progress :100%',True)
-        narrator.speak('Image Detection Software Ready. Please press Q to Scan the Game Window.',True)
+        if self.initialized is False:
+            narrator.speak('Starting Image Detection Software')
+            self.genericModel = self.initalizeImageDetectionModel('yolov5x', self.genericModelConf, 0.7)
+            narrator.speak('Progress :100%',True)
+            narrator.speak('Image Detection Software Ready. Please press Q to Scan the Game Window.',True)
         print(self)
 
 

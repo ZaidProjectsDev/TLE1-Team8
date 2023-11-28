@@ -12,6 +12,8 @@ import shared_model as current_vars
 import localization
 import tkinter as tk
 import narrator
+import windowcapturehotkeytest
+
 pygame.init()
 shared_models = current_vars.SharedModels()
 current_vars.setCurrentSharedModel(shared_models)
@@ -50,6 +52,7 @@ def update_program():
 
 def keyboard_update():
     # if windowdefinition.activeWindow is not None and windowdefinition.activeWindow.title is not '':
+    windowcapturehotkeytest.check_for_game_window(shared_models)
     keyboardInput(windowdefinition.active_window.title, shared_models)
     check_event()
     root.after(50, keyboard_update)
