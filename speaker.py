@@ -17,10 +17,10 @@ class SpeakerObject:
             addedMsg = "Current selection is : "
         else:
             addedMsg = ""
-        self.engine.stop()
         self.engine.say(addedMsg+msg)
         self.engine.runAndWait()
-
+    def stopTalking(self):
+        self.engine.stop()
     def say(self, error="Undefined Error"):
         if self.engine is None:
             self.engine = pyttsx3.init()

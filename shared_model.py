@@ -1,9 +1,8 @@
 import os
 import torch
 import os
-import speaker
 import torch
-messager = speaker.SpeakerObject()
+import narrator
 current = None
 # The point of system.py is to facilitate shared variables for consistent usage
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -19,15 +18,16 @@ class SharedModels():
 
     def initalizeImageDetectionModel(self,modelVersion='yolov5x', confidenceVariable=genericModelConf,
                                      desiredMinimumConfidence=0.7):
+        narrator.speak('Progress : 25%',True)
         model = torch.hub.load('yolov5', modelVersion, source='local')
-        messager.say('Progress : 50%')
+        narrator.speak('Progress : 50%',True)
         return model
 
     def initalizeVision(self):
-        messager.say('Starting Image Detection Software')
+        narrator.speak('Starting Image Detection Software')
         self.genericModel = self.initalizeImageDetectionModel('yolov5x', self.genericModelConf, 0.7)
-        messager.say('Progress :100%')
-        messager.say('Image Detection Software Ready. Please press Q to Scan the Game Window.')
+        narrator.speak('Progress :100%',True)
+        narrator.speak('Image Detection Software Ready. Please press Q to Scan the Game Window.',True)
         print(self)
 
 
