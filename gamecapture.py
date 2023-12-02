@@ -37,7 +37,7 @@ def try_to_capture_game_window(retries=5, game_window=None, model=None):
     return result
 
 
-def scan_game_window(game_window, model):
+def scan_game_window(game_window, shared_models):
     wincap = WindowCapture(game_window)
     fps = time()
     # screenshot = wincap.get_screenshot()
@@ -47,16 +47,22 @@ def scan_game_window(game_window, model):
     img = screenshot
     detections = []
 
-    results = model(img)
+    results = shared_models.genericModel(img)
+    results_doors = shared_models.doorModel(img)
     detections.append(results)
+    detections.append(results_doors)
     cv.namedWindow(game_window + ' scan', cv.WINDOW_KEEPRATIO)
+    cv.namedWindow(game_window + ' scan_doors', cv.WINDOW_KEEPRATIO)
     cv.imshow(game_window + ' scan', np.squeeze(results.render()))
+    cv.imshow(game_window + ' scan_doors', np.squeeze(results_doors.render()))
     cv.resizeWindow(game_window + ' scan', 960,540)
-
+    cv.resizeWindow(game_window + ' scan_doors', 960,540)
     # cv.imshow(game_window + ' scan', np.squeeze(results.render()))
 
     results.print()
+
     print('FPS {}'.format(1 / (time() - fps)))
     fps = time()
-
-    return sentencebuilder.sentencebuilder(results_parser(results))
+    s = results_parser(results)
+    s += str(results_parser(results_doors))
+    return sentencebuilder.sentencebuilder(s)

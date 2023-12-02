@@ -25,7 +25,7 @@ def play_sound(file_path):
 def scanner(game_window, shared_models):
     print("you pressed 'q' .")
     play_sound('ding-36029.wav')
-    result = gamecapture.try_to_capture_game_window(20, game_window, shared_models.genericModel)
+    result = gamecapture.try_to_capture_game_window(20, game_window, shared_models)
     narrator.speak(result,True)
     print(result)
 
