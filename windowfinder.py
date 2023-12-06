@@ -35,8 +35,7 @@ def create_window_list(root, canvas,):
 
     window_list = get_all_windows()
 
-    label = tk.Label(canvas, text="Select a window:")
-    label.grid(row=0, column=0, columnspan=2, pady=10)  # Adjust columnspan and pady as needed
+
 
     row_index = 1  # Start from the second row to leave space for the label
 

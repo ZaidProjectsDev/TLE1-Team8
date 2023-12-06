@@ -26,7 +26,7 @@ root.withdraw()
 
 gui = gui_windowcontroller.GuiWindowController(root, shared_models, lang)
 # buttons
-narrator.speak(lang.get_translation('tts_app_started'), True)
+narrator.speak(lang.get_translation('tts_app_started'), True, False, True)
 
 
 def check_event():
@@ -47,7 +47,7 @@ def update_program():
     gamecapture.shared_models = shared_models
     windowdefinition.get_updated_window_status()
     gui.update()
-    root.after(10, update_program)
+    root.after(100, update_program)
 
 
 def keyboard_update():
@@ -56,6 +56,7 @@ def keyboard_update():
     keyboardInput(windowdefinition.active_window.title, shared_models)
     check_event()
     root.after(50, keyboard_update)
+
 
 
 update_program()
