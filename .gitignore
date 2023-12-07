@@ -8,3 +8,4 @@ yolov5x.pt
 .pyc
 *.pyc
 idea
+/training_captures/
