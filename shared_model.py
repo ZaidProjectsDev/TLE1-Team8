@@ -44,9 +44,9 @@ class SharedModels():
                 self.screenReaderEnabled = True
 
                 narrator.speak('Starting Image Detection Software', True, False, True)
-                self.genericModel = self.initalizeImageDetectionModel('yolov5x', 0.4)
-                self.doorModel = self.initalizeCustomImageDetectionModel('doors.pt', 0.4)
-                self.hudModel = self.initalizeCustomImageDetectionModel('hud.pt',0.4)
+                self.genericModel = self.initalizeImageDetectionModel('yolov5x', 0.6)
+                self.doorModel = self.initalizeCustomImageDetectionModel('doors.pt', 0.2)
+                self.hudModel = self.initalizeCustomImageDetectionModel('hud.pt',0.2)
 
                 narrator.speak('Progress :100%', True, False, True)
                 narrator.speak('Image Detection Software Ready. Please press Q to Scan the Game Window.', True, False,
