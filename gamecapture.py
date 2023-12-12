@@ -78,5 +78,6 @@ def scan_game_window(game_window, model, model_name):
     results.print()
     print('FPS {}'.format(1 / (time() - fps)))
     fps = time()
+    return results_parser(results)
 
-    return sentencebuilder.sentencebuilder(results_parser(results))
+    #return sentencebuilder.sentencebuilder(results_parser(results))

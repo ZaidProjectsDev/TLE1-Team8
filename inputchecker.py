@@ -5,7 +5,7 @@ import gamecapture
 import localization
 root = None
 models = None
-
+import sentencebuilder
 lang = localization.Localization()
 def play_sound(file_path):
     pygame.init()
@@ -26,8 +26,11 @@ def scanner(game_window, shared_models):
     print("you pressed 'q' .")
     play_sound('ding-36029.wav')
     result = gamecapture.try_to_capture_game_window(20, game_window, [shared_models.genericModel,shared_models.doorModel,shared_models.hudModel])
-    narrator.speak(result,True)
-    print(result)
+
+    final_result = sentencebuilder.sentencebuilder(result)
+    print(final_result)
+    narrator.speak(final_result,True)
+
 
 
 def keyboardInput(game_window, shared_models):
