@@ -5,7 +5,7 @@ from windowdefinition import get_updated_window_status, update_active_window, ge
 
 
 class GuiWindowController:
-    automatic_tut_message_delay = 30
+    automatic_tut_message_delay = 180 #MODIFY THIS NUMBER IF YOU FIND THE AUTO NARRATION TO BE ANNOYING (used to be 30, now 180)
     current_automatic_tut_message_delay = 0
     automatic_tut_message_alt = 'You can press Q to scan and get a narration of your active game window.'
     automatic_tut_message= 'Use TAB and Spacebar to navigate the program. You can press ENTER to automatically start narration of your highlighted game window.'
@@ -76,8 +76,8 @@ class GuiWindowController:
         else:
             if narrator.check_busy() is True:
                 self.current_automatic_tut_message_delay = 0
-            self.current_automatic_tut_message_delay += 1
-            print(self.current_automatic_tut_message_delay)
+            self.current_automatic_tut_message_delay += 0 #disabled change to 0, change to 1 to work
+            #print(self.current_automatic_tut_message_delay)
         self.root.after(250, self.run_automatic_tut_message)
     def close_program(self):
         self.root.destroy()  # Destroy the main (root) window

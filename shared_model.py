@@ -12,37 +12,42 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 class SharedModels():
     genericModel = None
-    genericModelConf = 1
+    hudModel = None
+    doorModel = None
+    fireModel = None
     environmentModel = None
-    environmentModelConf = 1
     gameElementModel = None
-    gameElementModelConf = 1
     activeUIWindow = None
     initialized = False
     screenReaderEnabled = False
+    #THIS INITIALIZES THE DEFAULT YOLOV5 DETECTION MODEL
 
-    def initalizeImageDetectionModel(self, modelVersion='yolov5x', confidenceVariable=genericModelConf,
-                                     desiredMinimumConfidence=0.7):
+    def initalizeImageDetectionModel(self, modelVersion='yolov5x', desiredMinimumConfidence=0.7):
         narrator.speak('Progress : 25%', True, False, True)
         model = torch.hub.load('yolov5', modelVersion, source='local')
+        model.conf = desiredMinimumConfidence
         narrator.speak('Progress : 50%', True, False, True)
         self.initialized = True
         return model
-
+    #THIS INITIALIZES THE CUSTOM YOLOV% DETECTION MODEL YOU MADE, EX: Doors, HUD, Fires, etc
     def initalizeCustomImageDetectionModel(self, modelVersion='yolov5x', desiredMinimumConfidence=0.7):
         model = torch.hub.load('yolov5', 'custom', path=modelVersion, source='local', force_reload=True)
         model.conf = desiredMinimumConfidence
         print(model(torch.randn(1, 3, 640, 640)))
         return model
 
+    #THIS RUNS THE DETECTION INITIALIZATION FOR ALL MODELS.
     def initalizeVision(self):
         if self.initialized is False:
             try:
 
                 self.screenReaderEnabled = True
+
                 narrator.speak('Starting Image Detection Software', True, False, True)
-                self.genericModel = self.initalizeCustomImageDetectionModel('hud.pt', 0.25)
-                # self.initalizeImageDetectionModel('yolov5x', self.genericModelConf, 0.7)
+                self.genericModel = self.initalizeImageDetectionModel('yolov5x', 0.4)
+                self.doorModel = self.initalizeCustomImageDetectionModel('doors.pt', 0.4)
+                self.hudModel = self.initalizeCustomImageDetectionModel('hud.pt',0.4)
+
                 narrator.speak('Progress :100%', True, False, True)
                 narrator.speak('Image Detection Software Ready. Please press Q to Scan the Game Window.', True, False,
                                True)
