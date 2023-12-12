@@ -45,6 +45,8 @@ def try_to_capture_game_window(retries=5, game_window=None, models=None):
 
         combined_results.append(result)
 
+
+
     return combined_results
 
 
@@ -60,7 +62,7 @@ def scan_game_window(game_window, model):
 
     results = model(img)
     detections.append(results)
-    cv.namedWindow(game_window + ' scan', cv.WINDOW_KEEPRATIO)
+    cv.namedWindow(game_window + ' scan' + str(model), cv.WINDOW_KEEPRATIO)
     cv.imshow(game_window + ' scan', np.squeeze(results.render()))
     cv.resizeWindow(game_window + ' scan', 960, 540)
 
