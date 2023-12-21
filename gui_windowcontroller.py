@@ -61,8 +61,36 @@ class GuiWindowController:
         self.btn_screen_reader_window.pack()
         self.bind_button_to_narrator(self.btn_screen_reader_window)
 
+        self.toggle_var = tk.StringVar()
+        self.toggle_var.set("Off")
+
+        self.btn_toggle_on = tk.Button(
+            text=self.toggle_var.get(),
+            command=self.toggle_button_clicked,
+            font=("Arial", 18),  # Adjust the font size
+            padx=30,  # Adjust the horizontal padding
+            pady=15,  # Adjust the vertical padding
+        )
+        self.btn_toggle_on.pack()
 
 
+    def toggle_button_clicked(self):
+        current_state = self.toggle_var.get()
+
+        # Toggle the state
+        new_state = "Off" if current_state == "On" else "On"
+        self.toggle_var.set(new_state)
+
+        # Update the button text based on the new state
+        self.btn_toggle_on.config(text=new_state)
+
+        # Handle the button click based on the new state
+        if new_state == "On":
+            print("Toggle button is On")
+            # Add actions for the "On" state if needed
+        elif new_state == "Off":
+            print("Toggle button is Off")
+            # Add actions for the "Off" state if needed
 
     def interrupt_tut_message_timer(self):
         self.current_automatic_tut_message_delay = 0
