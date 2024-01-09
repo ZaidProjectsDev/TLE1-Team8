@@ -29,7 +29,7 @@ def is_speaking():
 
 def check_busy():
     # skip
-    return False
+    # return False
     return pygame.mixer.music.get_busy()
 def init_or_die():
     if not pygame.mixer.get_init():
@@ -38,7 +38,7 @@ def init_or_die():
 
 def speak(text, wait_to_finish=False, use_naviagtional_starter=False, block_main_thread=False):
     #skip
-    return
+    # return
     global current_text, current_text_wait_to_finish
     if current_text == text:
         return
