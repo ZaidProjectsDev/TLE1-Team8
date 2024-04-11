@@ -1,7 +1,6 @@
 # TLE1-Team8
 Team 8: Hoofdopdracht 3, Opdrachtgever MEE
 
-<<<<<<< HEAD
 # Modus Operandi 
 Use ML to make it possible for visually impared gamers to visualize their surroundings by using 
 ML Image recognition and Text-To-Speech narration. 
